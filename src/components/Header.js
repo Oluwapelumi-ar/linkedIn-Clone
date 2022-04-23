@@ -1,6 +1,8 @@
-import { Home, Search } from '@mui/icons-material';
+import { BusinessCenter, Chat, Home, Notifications, Search, SupervisorAccount } from '@mui/icons-material';
 import React from 'react';
 import './Header.css'
+import HeaderOption from './HeaderOption';
+
 
 function Header() {
   return (
@@ -14,7 +16,12 @@ function Header() {
       </div>
 
       <div className="header__right">
-        .
+        <HeaderOption Icon={Home} title='Home'/>
+        <HeaderOption Icon={SupervisorAccount} title='My Network' />
+        <HeaderOption Icon={BusinessCenter} title='My Jobs' />
+        <HeaderOption Icon={Chat} title='Messaging' />
+        <HeaderOption Icon={Notifications} title='Notifications' />
+        <HeaderOption avatar='https://media-exp1.licdn.com/dms/image/C4D03AQEKkThJ8EF6IA/profile-displayphoto-shrink_100_100/0/1614709228144?e=1655942400&v=beta&t=6yOSjUJ7nKPhaqtKTe-XtCwNveM9BnF8fZ8CM1F1wS4' title='Me'/>
       </div>
     </div>
   )
