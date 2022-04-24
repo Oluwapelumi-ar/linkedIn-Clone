@@ -2,7 +2,7 @@ import { ChatOutlined, SendOutlined, ShareOutlined, ThumbUpOffAltOutlined } from
 import { Avatar } from '@mui/material';
 import React from 'react';
 import InputOption from './InputOption';
-import './Post'
+import './Post.css'
 
 function Post({ name,description,message,photoUrl}) {
   return (
