@@ -5,10 +5,15 @@ import './Feed.css';
 import InputOption from './InputOption';
 import Post from './Post';
 import firebase from 'firebase/compat/app'
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
+import FlipMove from 'react-flip-move';
 
 function Feed() {
   const [input, setInput] = useState([]);
   const [posts,setPosts] = useState([]);
+
+  const user = useSelector(selectUser)
   
   useEffect(() => {
     db.collection('posts').orderBy('timeStamp','desc').onSnapshot((snapshot) => 
@@ -25,10 +30,10 @@ function Feed() {
   const sendPost = (event) => {
     event.preventDefault();
     db.collection('posts').add({
-      name:'Shukrah Bakare',
-      description:'This is a test',
+      name:user.displayName,
+      description:user.email,
       message: input,
-      photoUrl:'',
+      photoUrl:user.photoUrl || '',
       timeStamp:firebase.firestore.FieldValue.serverTimestamp()
     });
 
@@ -52,7 +57,9 @@ function Feed() {
           <InputOption Icon={CalendarViewDay} title='Write Article' color='#7FC15E'/>
         </div>
       </div>
-      {posts.map(({id,data:{name,description, message,photoUrl}}) => {
+      
+      <FlipMove>
+        {posts.map(({id,data:{name,description, message,photoUrl}}) => {
         return(
           <div className="post">
             <Post 
@@ -67,6 +74,8 @@ function Feed() {
         )
         
       })}
+      </FlipMove>
+      
       
     </div>
   )
